@@ -6,7 +6,7 @@ import { CLOUD,
         SUN,
         RAIN,
         SNOW,
-        WINDY } from "./../constants/weathers";
+        WINDY } from "./../../../constants/weathers";
 
 const stateToIconName = weatherState => {
     switch (weatherState) {
@@ -24,6 +24,9 @@ const stateToIconName = weatherState => {
             break;
         case SNOW:
             return "snow";
+            break;
+        case WINDY:
+            return "windy";
             break;
         default:
             return "day-sunny";
