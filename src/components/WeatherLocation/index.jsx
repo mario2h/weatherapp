@@ -44,7 +44,6 @@ class WeatherLocation extends Component {
                 <button onClick={this.handleUpdateClick}>Actualizar</button>
             </div>
         );
-        
     };
 }
 
