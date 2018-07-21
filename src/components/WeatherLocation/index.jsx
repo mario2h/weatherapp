@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import convert from 'convert-units';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import { SUN } from '../../constants/weathers';
+import transformWeather from './../../services/transformWeather';
 import './styles.css';
 
 const location = 'Santiago,CL';
@@ -24,32 +26,13 @@ class WeatherLocation extends Component {
     };
   }
 
-  getWeatherState = (weather) => {
-    return SUN;
-  }
-
-  getData = (weatherData) => {
-    const { humidity, temp } = weatherData.main;
-    const { speed } = weatherData.wind;
-    const weatherState = this.getWeatherState(this.weather);
-
-    const data = {
-      humidity,
-      temperature: temp,
-      weatherState,
-      wind: `${speed} m/s`,
-    };
-
-    return data;
-  }
-
   handleUpdateClick = () => {
     fetch(apiUrl).then((response) => {
       console.log(response);
       return response.json();
     }).then((weatherData) => {
       console.log(weatherData);
-      const data = this.getData(weatherData);
+      const data = transformWeather(weatherData);
       this.setState({ data });
     });
   }
